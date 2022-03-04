@@ -61,7 +61,7 @@ jobs:
     - name: Pack
       run: dotnet pack --no-build -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false -o .
         
-    #- name: Push
+    #- name: Push 
     #  run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.NUGET_SOURCE }} --skip-duplicate    
 
     - name: Semantic versioning
