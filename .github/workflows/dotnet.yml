@@ -80,3 +80,4 @@ jobs:
         release_name: "${{ steps.tag_version.outputs.new_tag }}"
         draft: true
         prerelease: true
+        
