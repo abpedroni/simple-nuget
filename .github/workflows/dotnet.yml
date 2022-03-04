@@ -33,34 +33,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    #- uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-    - name: teste
-      run: echo "-${{ env.BUILD_NUMBER}}-"
-
-    - name: Setting variable
+    - name: Setting Variables
       run: |
-        echo "version number esta vazio"
+        echo "new build version:"
         echo "BUILD_NUMBER=1.0.${{ github.run_number }}" >> $GITHUB_ENV
       if: ${{ env.BUILD_NUMBER == '' }}
 
-    - name: teste 2
-      run: echo "-${{ env.BUILD_NUMBER}}-"
-
-    # - name: Setup .NET v${{ env.DOTNET_VERSION }}
-    #   uses: actions/setup-dotnet@v1
-    #   with:
-    #     dotnet-version: ${{ env.DOTNET_VERSION }}
+    - name: Setup .NET v${{ env.DOTNET_VERSION }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
         
-    # - name: Restore dependencies
-    #   run: dotnet restore --configfile NuGet.Config
+    - name: Restore dependencies
+      run: dotnet restore --configfile NuGet.Config
       
-    # - name: Build
-    #   run: dotnet build --no-restore -c ${{ github.event.inputs.config_deploy }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
+    - name: Build
+      run: dotnet build --no-restore -c ${{ github.event.inputs.config_deploy }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
 
-    # - name: Pack
-    #   run: dotnet pack --no-build -c ${{ github.event.inputs.config_deploy }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
+    - name: Pack
+      run: dotnet pack --no-build -c ${{ github.event.inputs.config_deploy }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
       
-    # - name: Push
-    #   run: echo "pushing...Version ${{ env.BUILD_NUMBER }}"
+    - name: Push
+      run: echo "pushing...Version ${{ env.BUILD_NUMBER }}"
     
