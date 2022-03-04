@@ -55,7 +55,6 @@ jobs:
     - name: Build
       run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
   publish:
-    needs: [build]
     runs-on: ubuntu-latest
     steps:
     - name: Pack
