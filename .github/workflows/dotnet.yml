@@ -1,14 +1,15 @@
 name: Nuget lib workflow
 
 on:
-  #manual trigger.
+  push:
+    branches: 
+      - master
+      - 'feat/**'
+  pull_request:
+    branches: 
+      - master
+      - 'feat/**' 
   workflow_dispatch:
-#  push:
-#    branches: 
-#      [ master ]
-#  pull_request:
-#    branches: 
-#      [ master ]  
 
 jobs:
   build:
@@ -33,3 +34,5 @@ jobs:
       
     - name: Push
       run: echo 'pushing...'
+    
+    
