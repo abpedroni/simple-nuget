@@ -47,7 +47,7 @@ jobs:
       run: dotnet build --no-restore -c ${{ github.event.inputs.config_deploy }} -p:VersionSuffix=${{ env.VERSION_NUMBER }} /nr:false
 
     - name: Pack
-      run: dotnet pack --no-build --configuration Debug -p:VersionSuffix=${{ env.VERSION_NUMBER }} /nr:false
+      run: dotnet pack --no-build -c ${{ github.event.inputs.config_deploy }} -p:VersionSuffix=${{ env.VERSION_NUMBER }} /nr:false
       
     - name: Push
       run: echo "pushing...Version ${{ env.VERSION_NUMBER }}"
