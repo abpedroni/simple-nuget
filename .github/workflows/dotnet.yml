@@ -34,14 +34,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: teste
       run: echo "-${{ env.VERSION_NUMBER}}-"
 
     - name: ESTA VAZIO
       if: ${{ env.VERSION_NUMBER == '' }}
-    
-    
 
     # - name: Setup .NET v${{ env.DOTNET_VERSION }}
     #   uses: actions/setup-dotnet@v1
