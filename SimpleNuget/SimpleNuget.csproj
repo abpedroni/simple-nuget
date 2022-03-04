@@ -11,7 +11,7 @@
     <Version Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</Version>
     <Authors>Allan</Authors>
     <Company>Simples Nuget</Company>
-    <RepositoryType>https://github.com/abpedroni/simple-nuget.git</RepositoryType>
+    <RepositoryUrl>https://github.com/abpedroni/simple-nuget.git</RepositoryUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
