@@ -1,12 +1,14 @@
-name: .NET
+name: Nuget lib workflow
 
 on:
-  push:
-    branches: 
-      [ master ]
-  pull_request:
-    branches: 
-      [ master ]
+  #manual trigger.
+  workflow_dispatch:
+#  push:
+#    branches: 
+#      [ master ]
+#  pull_request:
+#    branches: 
+#      [ master ]  
 
 jobs:
   build:
