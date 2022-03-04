@@ -37,11 +37,6 @@ jobs:
     name: Build and deploy nuget
     runs-on: ubuntu-latest
     steps:
-    - name: teste
-      run: |
-        echo "config_deploy:${{inputs.config_deploy}}"
-        echo "versionTag:${{inputs.versionTag}}"
-
     - uses: actions/checkout@v2
 
     - name: Define build number if empty
@@ -69,15 +64,15 @@ jobs:
     #- name: Push
     #  run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.NUGET_SOURCE }} --skip-duplicate    
 
-  - name: Semantic versioning
-    id: versioning
-    uses: PaulHatch/semantic-version@v4.0.2
-    with:
-      branch: main
-      tag_prefix: "v"
-      major_pattern: "BREAKING CHANGE:"
-      minor_pattern: "feat:"
-      format: "v${major}.${minor}.${patch}" #-rc${increment}
+    - name: Semantic versioning
+      id: versioning
+      uses: PaulHatch/semantic-version@v4.0.2
+      with:
+        branch: main
+        tag_prefix: "v"
+        major_pattern: "BREAKING CHANGE:"
+        minor_pattern: "feat:"
+        format: "v${major}.${minor}.${patch}" #-rc${increment}
 
     - name: Create Release
       if: ${{ !startsWith(github.ref, 'refs/tags/') }}
