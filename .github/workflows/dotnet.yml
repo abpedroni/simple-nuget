@@ -33,7 +33,8 @@ env:
   CONFIG_DEPLOY: ${{ github.event.inputs.config_deploy }}
 
 jobs:
-  build:
+  build-and-deploy:
+    name: Build and deploy nuget
     runs-on: ubuntu-latest
     steps:
     - name: teste
@@ -41,49 +42,35 @@ jobs:
         echo "config_deploy:${{inputs.config_deploy}}"
         echo "versionTag:${{inputs.versionTag}}"
 
-  #   - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-  #   - name: Setting Variables
-  #     id: variables
-  #     run: |
-  #       echo "BUILD_NUMBER=1.0.${{ github.run_number }}" >> $GITHUB_ENV
-  #       echo "CONFIG_DEPLOY=release" >> $GITHUB_ENV
-  #       echo "::set-output name=build_number::${BUILD_NUMBER}"
-  #       echo "::set-output name=config_deploy::${CONFIG_DEPLOY}"
-
-  #   # - name: Define build number if empty
-  #   #   run: |
-  #   #   if: ${{ env.BUILD_NUMBER == '' }}
-  #   # - name: Define configuration deploy if empty
-  #   #   run: |
-  #   #   if: ${{ env.CONFIG_DEPLOY == '' }}
-
-  #   - name: Setup .NET v${{ env.DOTNET_VERSION }}
-  #     uses: actions/setup-dotnet@v1
-  #     with:
-  #       dotnet-version: ${{ env.DOTNET_VERSION }}
-        
-  #   - name: Restore dependencies
-  #     run: dotnet restore --configfile NuGet.Config
+    - name: Setting Variables
+      id: variables
+      run: |
       
-  #   - name: Build
-  #     run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
+    - name: Define build number if empty
+      run: echo "BUILD_NUMBER=1.0.${{ github.run_number }}" >> $GITHUB_ENV
+      if: ${{ env.BUILD_NUMBER == '' }}
 
-  #   outputs:
-  #     build_number: ${{ steps.variables.outputs.build_number }}
-  #     config_deploy: ${{ steps.variables.outputs.config_deploy }}
+    - name: Define configuration deploy if empty
+      run: echo "CONFIG_DEPLOY=release" >> $GITHUB_ENV
+      if: ${{ env.CONFIG_DEPLOY == '' }}
 
-  # publish:
-  #   runs-on: ubuntu-latest
-  #   needs: [build]
-  #   steps:
-  #   - name: Pack
-  #     run: |
-  #       echo "build_number: ${{ needs.build.outputs.build_number }}"
-  #       echo "config_deploy: ${{ needs.build.outputs.config_deploy }}"
+    - name: Setup .NET v${{ env.DOTNET_VERSION }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
         
-  #   #dotnet pack --no-build -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false -o .
-  #   #- name: Push
-  #   #  run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.NUGET_SOURCE }} --skip-duplicate    
+    - name: Restore dependencies
+      run: dotnet restore --configfile NuGet.Config
+      
+    - name: Build
+      run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
+
+    - name: Pack
+      run: dotnet pack --no-build -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false -o .
+        
+    - name: Push
+      run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.NUGET_SOURCE }} --skip-duplicate    
 
     
