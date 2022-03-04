@@ -1,0 +1,38 @@
+name: Nuget lib workflow
+
+on:
+  push:
+    branches: 
+      - master
+      - 'feat/**'
+  pull_request:
+    branches: 
+      - master
+      - 'feat/**' 
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore --configfile NuGet.Config
+      
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Pack
+      run: echo 'packing...'
+      
+    - name: Push
+      run: echo 'pushing...'
+    
+    
