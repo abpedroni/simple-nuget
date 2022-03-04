@@ -41,7 +41,7 @@ jobs:
     - name: Setting variable
       run: |
         echo "version number esta vazio"
-        BUILD_NUMBER=${env.GITHUB_RUN_NUMBER}
+        echo "1.0.${{ env.GITHUB_RUN_NUMBER }}"" >> $BUILD_NUMBER
       if: ${{ env.BUILD_NUMBER == '' }}
 
     - name: teste 2
