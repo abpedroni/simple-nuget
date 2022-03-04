@@ -42,7 +42,6 @@ jobs:
       run: |
         echo "version number esta vazio"
         BUILD_NUMBER=${GITHUB_RUN_NUMBER}
-        EOF
       if: ${{ env.BUILD_NUMBER == '' }}
 
     - name: teste 2
