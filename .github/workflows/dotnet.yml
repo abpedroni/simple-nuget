@@ -23,7 +23,7 @@ on:
 
 env:
   #OUTPUT_PATH: ${{ github.workspace }}/.output
-  NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }} #"https://nuget.pkg.github.com/julioarruda/index.json"
+  NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
   DOTNET_VERSION: '6.0.x'
   BUILD_NUMBER: ${{ github.event.inputs.versionTag }}
   CONFIG_DEPLOY: ${{ github.event.inputs.config_deploy }}
@@ -38,13 +38,11 @@ jobs:
 
     - name: Define build number if empty
       run: |
-        echo "new build version:"
         echo "BUILD_NUMBER=1.0.${{ github.run_number }}" >> $GITHUB_ENV
       if: ${{ env.BUILD_NUMBER == '' }}
 
     - name: Define configuration deploy if empty
       run: |
-        echo "new build version:"
         echo "CONFIG_DEPLOY=release" >> $GITHUB_ENV
       if: ${{ env.CONFIG_DEPLOY == '' }}
 
@@ -63,5 +61,6 @@ jobs:
       run: dotnet pack --no-build -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
       
     - name: Push
-      run: echo "pushing...Version ${{ env.BUILD_NUMBER }}"
+      run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.NUGET_SOURCE }} --skip-duplicate    
+      #run: echo "pushing...Version ${{ env.BUILD_NUMBER }}"
     
