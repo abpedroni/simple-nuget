@@ -71,6 +71,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.github_token }}
       with:
         tag_name: "v${{ env.BUILD_NUMBER }}"
-        release_name: "$v{{ env.BUILD_NUMBER }}"
+        release_name: "v${{ env.BUILD_NUMBER }}"
         draft: true
         prerelease: true
