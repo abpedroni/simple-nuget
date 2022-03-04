@@ -46,7 +46,7 @@ jobs:
       run: |
         echo "new build version:"
         echo "CONFIG_DEPLOY=release" >> $GITHUB_ENV
-      if: ${{ env.BUILD_NUMBER == '' }}
+      if: ${{ env.CONFIG_DEPLOY == '' }}
 
     - name: Setup .NET v${{ env.DOTNET_VERSION }}
       uses: actions/setup-dotnet@v1
