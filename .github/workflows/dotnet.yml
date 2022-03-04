@@ -65,7 +65,6 @@ jobs:
       run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
 
     outputs:
-      : ${{ steps.build_number.outputs.test }}
       build_number: ${{ steps.variables.outputs.build_number }}
       config_deploy: ${{ steps.variables.outputs.config_deploy }}
 
