@@ -22,7 +22,7 @@ on:
 
       versionTag:
         description: 'Version Tag (semantic version)'
-        default: '1.0.${{ github.run_number }}'
+        default: '1.0.0'
         required: false
 
 env:
