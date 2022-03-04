@@ -1,5 +1,8 @@
 # simple-nuget
 
+[X] Nuget lib project created;
+[] Github workflow
+
 Scenario:
 - Simple Library c# project;
 - Github actions
