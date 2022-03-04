@@ -30,6 +30,7 @@ env:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -57,9 +58,9 @@ jobs:
       run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
 
   publish:
-      name: Deploy to github packages
-      needs: [build]
-      runs-on: ubuntu-latest
+    name: Deploy to github packages
+    needs: [build]
+    runs-on: ubuntu-latest
 
     - name: Pack
       run: |
