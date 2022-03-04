@@ -33,12 +33,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
+    
     - name: teste
       run: echo "-${{ env.VERSION_NUMBER}}-"
 
     - name: ESTA VAZIO
       if: ${{ env.VERSION_NUMBER == '' }}
-    # - uses: actions/checkout@v2
+    
     
 
     # - name: Setup .NET v${{ env.DOTNET_VERSION }}
