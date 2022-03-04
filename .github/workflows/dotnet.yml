@@ -26,6 +26,7 @@ env:
   NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }} #"https://nuget.pkg.github.com/julioarruda/index.json"
   DOTNET_VERSION: '6.0.x'
   BUILD_NUMBER: ${{ github.event.inputs.versionTag }}
+  CONFIG_DEPLOY: ${{ github.event.inputs.config_deploy }}
 
 jobs:
   build:
@@ -35,10 +36,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setting Variables
+    - name: Define build number if empty
       run: |
         echo "new build version:"
         echo "BUILD_NUMBER=1.0.${{ github.run_number }}" >> $GITHUB_ENV
+      if: ${{ env.BUILD_NUMBER == '' }}
+
+    - name: Define configuration deploy if empty
+      run: |
+        echo "new build version:"
+        echo "CONFIG_DEPLOY=release" >> $GITHUB_ENV
       if: ${{ env.BUILD_NUMBER == '' }}
 
     - name: Setup .NET v${{ env.DOTNET_VERSION }}
@@ -50,10 +57,10 @@ jobs:
       run: dotnet restore --configfile NuGet.Config
       
     - name: Build
-      run: dotnet build --no-restore -c ${{ github.event.inputs.config_deploy }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
+      run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
 
     - name: Pack
-      run: dotnet pack --no-build -c ${{ github.event.inputs.config_deploy }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
+      run: dotnet pack --no-build -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
       
     - name: Push
       run: echo "pushing...Version ${{ env.BUILD_NUMBER }}"
