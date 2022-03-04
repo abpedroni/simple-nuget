@@ -1,4 +1,4 @@
-name: Nuget lib workflow
+name: CI
 
 on:
   push:
@@ -10,6 +10,22 @@ on:
       - master
       - 'feat/**' 
   workflow_dispatch:
+    inputs:
+      config_deploy:
+        default: Release
+        required: true
+        description: A configuração a ser usada para compilar o projeto. O padrão para a maioria dos projetos é "Release"
+
+      versionTag:
+        description: 'Version Tag (semantic version)'
+        default: '1.0.${GITHUB_RUN_NUMBER}'
+        required: false
+
+env:
+  #OUTPUT_PATH: ${{ github.workspace }}/.output
+  NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }} #"https://nuget.pkg.github.com/julioarruda/index.json"
+  DOTNET_VERSION: '5.0.x'
+  VERSION_NUMBER: ${{ github.event.inputs.versionTag }}
 
 jobs:
   build:
@@ -18,21 +34,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
+
+    - name: Setup .NET v${{ env.DOTNET_VERSION }}
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: ${{ env.DOTNET_VERSION }}
         
     - name: Restore dependencies
       run: dotnet restore --configfile NuGet.Config
       
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -c ${{ github.event.inputs.config_deploy }} -p:VersionSuffix=${{ env.VERSION_NUMBER }} /nr:false
 
     - name: Pack
-      run: echo 'packing...'
+      run: |
+        dotnet pack --no-build --configuration Debug -p:VersionSuffix=${{ env.VERSION_NUMBER }} /nr:false
+        ls .
       
     - name: Push
-      run: echo 'pushing...'
-    
+      run: echo 'pushing... Version: ${{ env.VERSION_NUMBER }}'
     
