@@ -2,7 +2,7 @@
 
 - [x] Nuget lib project created;
 - [ ] Github workflow
-  - [ ] CI
+  - [x] CI
   - [ ] PR
   - [ ] RELEASE
 
