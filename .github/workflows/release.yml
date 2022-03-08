@@ -9,10 +9,9 @@ env:
   DOTNET_VERSION: '6.0.x'
 
 jobs:
-  build:
-
+  generate-release:
     runs-on: windows-latest
-
+    name: Generating release to github nuget packages
     steps:
     - uses: actions/checkout@v1
 

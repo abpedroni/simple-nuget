@@ -1,4 +1,4 @@
-name: PR analysis
+name: PR
 
 on:
   pull_request_target:
@@ -7,6 +7,7 @@ on:
       - edited
       - synchronize
       - reopened
+      - ready_for_review
 #  workflow_call:
 
 permissions:
@@ -14,7 +15,8 @@ permissions:
 
 jobs:
   semantics:
-    name: Semantics
+    if: github.event_name == 'pull_request'
+    name: Semantics analysis
     runs-on: ubuntu-latest
     steps:
       - uses: amannn/action-semantic-pull-request@v3.4.0
@@ -22,6 +24,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   welcome:
+  if: github.event_name == 'pull_request'
     name: Welcome
     runs-on: ubuntu-latest
     needs: semantics
