@@ -54,6 +54,7 @@ jobs:
 
       - name: Bump version and push tag
         id: bump-semver
+        if: ${{ steps.release-label.outputs.level != null }}
         uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
