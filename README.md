@@ -2,6 +2,9 @@
 
 - [x] Nuget lib project created;
 - [ ] Github workflow
+  - [ ] CI
+  - [ ] PR
+  - [ ] RELEASE
 
 Scenario:
 - Simple Library c# project;
