@@ -25,8 +25,8 @@ jobs:
       # Bump version on merging Pull Requests with specific labels. (bump:major,bump:minor,bump:patch)
       - id: bumpr
         if: "!startsWith(github.ref, 'refs/tags/')"
-        name: haya14busa/action-bumpr
-        uses: ./
+        name: Bump version
+        uses: haya14busa/action-bumpr@v1
 
       # Update corresponding major and minor tag. e.g. Update v1 and v1.2 when releasing v1.2.3
       - uses: haya14busa/action-update-semver@v1
@@ -55,3 +55,11 @@ jobs:
           body: ${{ steps.bumpr.outputs.message }}
           draft: false
           prerelease: false
+          
+  release-check:
+    if: github.event.action == 'labeled'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Post bumpr status comment
+        uses: haya14busa/action-bumpr@v1
