@@ -58,47 +58,47 @@ jobs:
   #         draft: true
   #         prerelease: true
 
-  release:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged == true }}
-    steps:
-      - uses: actions/checkout@v2
+  # release:
+  #   runs-on: ubuntu-latest
+  #   if: ${{ github.event.pull_request.merged == true }}
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      # - uses: actions-ecosystem/action-release-label@v1
-      #   id: release-label
-      #   if: ${{ github.event.pull_request.merged == true }}
+  #     # - uses: actions-ecosystem/action-release-label@v1
+  #     #   id: release-label
+  #     #   if: ${{ github.event.pull_request.merged == true }}
 
-      # - uses: actions-ecosystem/action-get-latest-tag@v1
-      #   id: get-latest-tag
-      #   if: ${{ steps.release-label.outputs.level != null }}
+  #     # - uses: actions-ecosystem/action-get-latest-tag@v1
+  #     #   id: get-latest-tag
+  #     #   if: ${{ steps.release-label.outputs.level != null }}
 
-      # - uses: actions-ecosystem/action-bump-semver@v1
-      #   id: bump-semver
-      #   if: ${{ steps.release-label.outputs.level != null }}
-      #   with:
-      #     current_version: ${{ steps.get-latest-tag.outputs.tag }}
-      #     level: ${{ steps.release-label.outputs.level }}
+  #     # - uses: actions-ecosystem/action-bump-semver@v1
+  #     #   id: bump-semver
+  #     #   if: ${{ steps.release-label.outputs.level != null }}
+  #     #   with:
+  #     #     current_version: ${{ steps.get-latest-tag.outputs.tag }}
+  #     #     level: ${{ steps.release-label.outputs.level }}
 
-      - name: Bump version and push tag
-        id: bump-semver
-        #if: ${{ steps.release-label.outputs.level != null }}
-        uses: mathieudutour/github-tag-action@v6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Bump version and push tag
+  #       id: bump-semver
+  #       #if: ${{ steps.release-label.outputs.level != null }}
+  #       uses: mathieudutour/github-tag-action@v6.0
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions-ecosystem/action-push-tag@v1
-        #if: ${{ steps.release-label.outputs.level != null }}
-        with:
-          tag: ${{ steps.bump-semver.outputs.new_tag }}
-          message: '${{ steps.bump-semver.outputs.new_tag }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
+  #     - uses: actions-ecosystem/action-push-tag@v1
+  #       #if: ${{ steps.release-label.outputs.level != null }}
+  #       with:
+  #         tag: ${{ steps.bump-semver.outputs.new_tag }}
+  #         message: '${{ steps.bump-semver.outputs.new_tag }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
 
-      - name: Create Release
-        #if: ${{ steps.release-label.outputs.level != null }}
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
-        with:
-          tag_name: "${{ steps.bump-semver.outputs.new_tag }}"
-          release_name: "${{ steps.bump-semver.outputs.new_tag }}"
-          draft: true
-          prerelease: true
+  #     - name: Create Release
+  #       #if: ${{ steps.release-label.outputs.level != null }}
+  #       uses: actions/create-release@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.github_token }}
+  #       with:
+  #         tag_name: "${{ steps.bump-semver.outputs.new_tag }}"
+  #         release_name: "${{ steps.bump-semver.outputs.new_tag }}"
+  #         draft: true
+  #         prerelease: true
