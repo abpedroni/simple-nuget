@@ -33,7 +33,7 @@ env:
   CONFIG_DEPLOY: ${{ github.event.inputs.config_deploy }}
 
 jobs:
-  build-and-deploy:
+  build:
     name: Build and deploy nuget
     runs-on: ubuntu-latest
     steps:
@@ -64,8 +64,8 @@ jobs:
     - name: Build
       run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
 
-    - name: Pack
-      run: dotnet pack --no-build -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false -o .
+    # - name: Pack
+    #   run: dotnet pack --no-build -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false -o .
     
     #- name: Push 
     #  run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.NUGET_SOURCE }} --skip-duplicate    

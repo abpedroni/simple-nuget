@@ -1,0 +1,35 @@
+name: Release to Nuget
+
+on: 
+  release:
+    types: [published]
+
+env:
+  NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
+  DOTNET_VERSION: '6.0.x'
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup .NET v${{ env.DOTNET_VERSION }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Create NuGet Package
+      run: dotnet pack -c Release -p:VersionSuffix=${{ github.event.release.tag_name }} /p:Version=${{ github.event.release.tag_name }} /p:PackageReleaseNotes="See https://github.com/abpedroni/simple-nuget/releases/tag/${{ github.event.release.tag_name }}"
+      working-directory: .
+
+    #- name: Push 
+    #  run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.NUGET_SOURCE }} --skip-duplicate    
+
+    - name: Archive NuGet Package
+      uses: actions/upload-artifact@v1
+      with:
+        name: GenFu.${{ github.event.release.tag_name }}.nupkg
+        path: .\SimpleNuget.${{ github.event.release.tag_name }}.nupkg
