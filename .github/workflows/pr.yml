@@ -60,6 +60,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged == true }}
     steps:
       - uses: actions/checkout@v2
 
@@ -92,7 +93,7 @@ jobs:
           message: '${{ steps.bump-semver.outputs.new_tag }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
 
       - name: Create Release
-        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        if: ${{ steps.release-label.outputs.level != null }}
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
