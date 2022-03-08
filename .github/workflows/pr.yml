@@ -24,7 +24,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   welcome:
-  if: github.event_name == 'pull_request'
     name: Welcome
     runs-on: ubuntu-latest
     needs: semantics
