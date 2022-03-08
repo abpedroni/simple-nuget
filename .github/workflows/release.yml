@@ -12,7 +12,9 @@ on:
     types:
       - labeled
 
-#REFERENCE: https://github.com/haya14busa/action-bumpr/blob/master/.github/workflows/release.yml
+#REFERENCE: 
+# https://github.com/haya14busa/action-bumpr/blob/master/.github/workflows/release.yml
+# https://github.com/marketplace/actions/bumpr-bump-version-when-merging-pull-request-with-specific-labels
 
 
 jobs:
@@ -55,7 +57,7 @@ jobs:
           body: ${{ steps.bumpr.outputs.message }}
           draft: false
           prerelease: false
-          
+
   release-check:
     if: github.event.action == 'labeled'
     runs-on: ubuntu-latest

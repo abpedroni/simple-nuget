@@ -1,7 +1,7 @@
 name: PR
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - edited
@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   semantics:
-    if: github.event_name == 'pull_request'
+    if: github.event.action != 'closed'
     name: Semantics analysis
     runs-on: ubuntu-latest
     steps:
