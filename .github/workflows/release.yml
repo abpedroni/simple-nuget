@@ -1,34 +1,89 @@
-name: Release to Nuget
+name: Create Release
 
-on: 
-  release:
-    types: [published]
-
-env:
-  NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
-  DOTNET_VERSION: '6.0.x'
+on:
+  push:
+    branches:
+      - master
 
 jobs:
-  generate-release:
-    runs-on: windows-latest
-    name: Generating release to github nuget packages
+  release:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
-    - name: Setup .NET v${{ env.DOTNET_VERSION }}
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
+  #     - name: Bump version and push tag
+  #       id: tag_version
+  #       uses: mathieudutour/github-tag-action@v6.0
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Create NuGet Package
-      run: dotnet pack -c Release -p:VersionSuffix=${{ github.event.release.tag_name }} /p:Version=${{ github.event.release.tag_name }} /p:PackageReleaseNotes="See https://github.com/abpedroni/simple-nuget/releases/tag/${{ github.event.release.tag_name }}"
-      working-directory: .
+  #     - name: Create Release
+  #       uses: actions/create-release@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.github_token }}
+  #       with:
+  #         tag_name: "${{ steps.tag_version.outputs.new_tag }}"
+  #         release_name: "${{ steps.tag_version.outputs.new_tag }}"
+  #         draft: true
+  #         prerelease: true
 
-    #- name: Push 
-    #  run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.NUGET_SOURCE }} --skip-duplicate    
+      - uses: actions-ecosystem/action-get-merged-pull-request@v1
+        id: get-merged-pull-request
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Archive NuGet Package
-      uses: actions/upload-artifact@v1
-      with:
-        name: GenFu.${{ github.event.release.tag_name }}.nupkg
-        path: .\SimpleNuget.${{ github.event.release.tag_name }}.nupkg
+      - uses: actions-ecosystem/action-release-label@v1
+        id: release-label
+        if: ${{ steps.get-merged-pull-request.outputs.title != null }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: ${{ steps.get-merged-pull-request.outputs.labels }}
+
+      # - uses: actions-ecosystem/action-get-latest-tag@v1
+      #   id: get-latest-tag
+      #   if: ${{ steps.release-label.outputs.level != null }}
+      #   with:
+      #     semver_only: true
+
+      # - uses: actions-ecosystem/action-bump-semver@v1
+      #   id: bump-semver
+      #   if: ${{ steps.release-label.outputs.level != null }}
+      #   with:
+      #     current_version: ${{ steps.get-latest-tag.outputs.tag }}
+      #     level: ${{ steps.release-label.outputs.level }}
+
+      - name: Bump version and push tag
+        id: bump-semver
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        if: ${{ steps.bump-semver.outputs.new_tag != null }}
+        with:
+          text: ${{ steps.get-merged-pull-request.outputs.body }}
+          regex: '```release_note([\s\S]*)```'
+
+      - uses: actions-ecosystem/action-push-tag@v1
+        if: ${{ steps.bump-semver.outputs.new_tag != null }}
+        with:
+          tag: ${{ steps.bump-semver.outputs.new_tag }}
+          message: "${{ steps.bump-semver.outputs.new_tag }}: PR #${{ steps.get-merged-pull-request.outputs.number }} ${{ steps.get-merged-pull-request.outputs.title }}"
+
+      - uses: actions/create-release@v1
+        if: ${{ steps.release-label.outputs.level == 'major' || steps.release-label.outputs.level == 'minor' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.bump-semver.outputs.new_tag }}
+          release_name: ${{ steps.bump-semver.outputs.new_tag }}
+          body: ${{ steps.regex-match.outputs.group1 }}
+
+      - uses: actions-ecosystem/action-create-comment@v1
+        if: ${{ steps.bump-semver.outputs.new_tag != null }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.get-merged-pull-request.outputs.number }}
+          body: |
+            The new version [${{ steps.bump-semver.outputs.new_tag }}](https://github.com/${{ github.repository }}/releases/tag/${{ steps.bump-semver.outputs.new_tag }}) has been released :tada:
