@@ -2,6 +2,13 @@ name: PR Validation
 
 on:
   pull_request:
+    types: 
+    - opened
+    - edited
+    - synchronize
+    - ready_for_review
+    - review_requested
+    - review_request_removed
     # branches: 
     #   - feat/*
     #   - feature/*
@@ -14,6 +21,7 @@ on:
     #   - ci/*
     #   - chore/*
     #   - revert/*
+
 
 env:
   NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
