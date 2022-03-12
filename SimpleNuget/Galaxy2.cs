@@ -62,3 +62,9 @@ public class Class22    {
     public string SomePropertyOfClass2 { get; set; } 
 
 }
+
+public static class Constants
+{
+    public const string RootContextFilePath = "prquantifier.yaml";
+    public const string GitHubFolderContextFilePath = ".github/prquantifier.yaml";
+}
