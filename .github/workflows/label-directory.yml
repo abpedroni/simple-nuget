@@ -2,6 +2,10 @@ name: Label by directory
 
 on:
   pull_request_target:
+    types: 
+    - opened
+    - reopened
+    - synchronize
 
 jobs:
   triage:
