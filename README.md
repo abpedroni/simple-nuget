@@ -1,21 +1,19 @@
 # simple-nuget
 
-- [x] Nuget lib project created;
-- [ ] Github workflow
-  - [ ] CI
-  - [ ] PR
-  - [ ] RELEASE
 
-Scenario:
+This project contains:
 - Simple Library c# project;
-- Github actions
-  -  Setup envs;
-  -  Steps
-     -  Setup .net version;
-     -  Restore
-     -  Build
-     -  Test
-     -  Pack
+- Simple unit tests;
+- Github workflow
+  - [ ] greetings
+  - [ ] add comments by labels
+  - [ ] set label by created branch
+  - [ ] pr title semantic analysis
+  - [ ] pr validation
+  - [ ] release to nuget
+  - [ ] dotnet mainline build
+
+
 
 GIthub Apps installed
   - [Microsoft Teams for GitHub](https://teams.github.com/)
