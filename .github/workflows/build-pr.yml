@@ -1,19 +1,18 @@
 name: Build PR
 
-on:
-  pull_request:
-    branches: 
-      - feat/*
-      - feature/*
-      - fix/*
-      - hotfix/*
-      - docs/*
-      - refactor/*
-      - perf/*
-      - test/*
-      - ci/*
-      - chore/*
-      - revert/*
+on: [pull_request]
+    # branches: 
+    #   - feat/*
+    #   - feature/*
+    #   - fix/*
+    #   - hotfix/*
+    #   - docs/*
+    #   - refactor/*
+    #   - perf/*
+    #   - test/*
+    #   - ci/*
+    #   - chore/*
+    #   - revert/*
 
 env:
   NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
