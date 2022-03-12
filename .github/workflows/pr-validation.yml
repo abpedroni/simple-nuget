@@ -1,0 +1,45 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: 
+      - 'feat/**'
+      - 'feature/**'
+      - 'fix/**'
+      - 'hotfix/**'
+      - 'docs/**'
+      - 'refactor/**'
+      - 'perf/**'
+      - 'test/**'
+      - 'ci/**'
+      - 'chore/**'
+      - 'revert/**'
+
+env:
+  NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
+  DOTNET_VERSION: '6.0.x'
+  BUILD_NUMBER: ${{ github.event.inputs.versionTag }}
+  CONFIG_DEPLOY: Debug
+
+jobs:
+  build:
+    name: Build 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET v${{ env.DOTNET_VERSION }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Restore dependencies
+      run: dotnet restore --configfile NuGet.Config
+      
+    - name: Build 
+      run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }}
+        
+    - name: Test
+      run: dotnet test --no-restore --no-build --verbosity normal
+
+
