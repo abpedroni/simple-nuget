@@ -1,0 +1,16 @@
+Thresholds:
+- Value: 10
+  Label: Extra Small
+  Color: Green
+- Value: 80
+  Label: Small
+  Color: Green
+- Value: 100
+  Label: Medium
+  Color: Yellow
+- Value: 400
+  Label: Large
+  Color: Red
+- Value: 1000
+  Label: Extra Large
+  Color: Red
