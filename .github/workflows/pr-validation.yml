@@ -2,18 +2,18 @@ name: PR Validation
 
 on:
   pull_request:
-    branches: 
-      - feat/*
-      - feature/*
-      - fix/*
-      - hotfix/*
-      - docs/*
-      - refactor/*
-      - perf/*
-      - test/*
-      - ci/*
-      - chore/*
-      - revert/*
+    # branches: 
+    #   - feat/*
+    #   - feature/*
+    #   - fix/*
+    #   - hotfix/*
+    #   - docs/*
+    #   - refactor/*
+    #   - perf/*
+    #   - test/*
+    #   - ci/*
+    #   - chore/*
+    #   - revert/*
 
 env:
   NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
