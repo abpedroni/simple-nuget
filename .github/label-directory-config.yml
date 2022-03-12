@@ -1,0 +1,11 @@
+feature: ['feature/*', 'feat/*']
+fix: fix/*
+hot-fix: hotfix/*
+chore: chore/*
+docs: docs/*
+refactor: refactor/*
+perf: perf/*
+test: test/*
+ci: ci/*
+chore: chore/*
+revert: revert/*

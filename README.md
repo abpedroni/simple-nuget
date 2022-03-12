@@ -19,4 +19,12 @@ Scenario:
 
 GIthub Apps installed
   - [Microsoft Teams for GitHub](https://teams.github.com/)
+    - Must install bot in MS Teams;
+    - commands: 
+      - subscribe ORG/REPO
+      - subscribe ORG/REPO [pulls]
+      - subscribe ORG [pulls]
+      - unsubscribe ORG [issues, comments, releases, deployements]
+
   - [Pull Request Quantifier](https://github.com/microsoft/PullRequestQuantifier)
+    - prquantifier.yaml

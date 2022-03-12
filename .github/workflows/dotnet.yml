@@ -4,11 +4,7 @@ on:
   push:
     branches: 
       - master
-      - 'feat/**'
-  pull_request:
-    branches: 
-      - master
-      - 'feat/**' 
+
   workflow_dispatch:
     inputs:
       config_deploy:
