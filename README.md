@@ -25,4 +25,4 @@ GIthub Apps installed
       - unsubscribe ORG [issues, comments, releases, deployements]
 
   - [Pull Request Quantifier](https://github.com/microsoft/PullRequestQuantifier)
-    - prquantifier.yaml
+    - .github/prquantifier.yaml
