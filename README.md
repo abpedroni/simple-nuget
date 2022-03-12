@@ -16,3 +16,7 @@ Scenario:
      -  Build
      -  Test
      -  Pack
+
+GIthub Apps installed
+  - [Microsoft Teams for GitHub](https://teams.github.com/)
+  - [Pull Request Quantifier](https://github.com/microsoft/PullRequestQuantifier)
