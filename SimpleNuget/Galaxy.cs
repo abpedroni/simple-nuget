@@ -38,6 +38,8 @@ public class Root
     public double longitude { get; set; }
     public string greeting { get; set; }
     public string favoriteFruit { get; set; }
+    public Class1 Class1 { get; set; } 
+    public Class2 Class2 { get; set; } 
 }
 
 public class Awesomeobject    {
@@ -66,12 +68,6 @@ public class Class1    {
 
 public class Class2    {
     public string SomePropertyOfClass2 { get; set; } 
-
-}
-
-public class Root    {
-    public Class1 Class1 { get; set; } 
-    public Class2 Class2 { get; set; } 
 
 }
 
