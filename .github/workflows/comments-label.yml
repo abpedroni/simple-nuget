@@ -14,9 +14,16 @@ jobs:
   comment:
     runs-on: ubuntu-18.04
     steps:
+    - name: Print variables
+      runs: |
+        echo "github.event.action >> ${{ github.event.action}}"
+        echo "github.actor >> ${{ github.actor}}"
+        echo "github.event_name >> ${{ github.event_name}}"
+        echo "github.ref >> ${{ github.ref}}"
+
       - uses: actions/checkout@v2
-        with:
-          ref: master
+        # with:
+        #   ref: master
 
       - name: Label Commenter
         uses: peaceiris/actions-label-commenter@v1

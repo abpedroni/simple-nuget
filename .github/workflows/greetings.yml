@@ -7,10 +7,19 @@ on:
     - assigned
   issues:
 
+#https://docs.github.com/en/actions/learn-github-actions/contexts#example-contents-of-the-github-context
+
 jobs:
   greeting:
     runs-on: ubuntu-latest
     steps:
+    - name: Print variables
+      runs: |
+        echo "github.event.action >> ${{ github.event.action}}"
+        echo "github.actor >> ${{ github.actor}}"
+        echo "github.event_name >> ${{ github.event_name}}"
+        echo "github.ref >> ${{ github.ref}}"
+
     - uses: actions/first-interaction@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
