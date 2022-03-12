@@ -14,12 +14,12 @@ jobs:
   comment:
     runs-on: ubuntu-18.04
     steps:
-    - name: Print variables
-      run: |
-        echo "github.event.action >> ${{ github.event.action}}"
-        echo "github.actor >> ${{ github.actor}}"
-        echo "github.event_name >> ${{ github.event_name}}"
-        echo "github.ref >> ${{ github.ref}}"
+      - name: Print variables
+        run: |
+          echo "github.event.action >> ${{ github.event.action}}"
+          echo "github.actor >> ${{ github.actor}}"
+          echo "github.event_name >> ${{ github.event_name}}"
+          echo "github.ref >> ${{ github.ref}}"
 
       - uses: actions/checkout@v2
         # with:
