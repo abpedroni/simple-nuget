@@ -1,20 +1,14 @@
+﻿using System;
+
 namespace SimpleNuget;
 
-public class Galaxy
-{
-    public void TakeStar()
-    {
-
-    }
-}
-
-public class Friend
+public class Friend2
 {
     public int id { get; set; }
     public string name { get; set; }
 }
 
-public class Root
+public class Root2
 {
     public string _id { get; set; }
     public int index { get; set; }
@@ -36,16 +30,16 @@ public class Root
     public double longitude { get; set; }
     public string greeting { get; set; }
     public string favoriteFruit { get; set; }
-    public Class1 Class1 { get; set; } 
-    public Class2 Class2 { get; set; } 
+    public Class12 Class1 { get; set; } 
+    public Class22 Class2 { get; set; } 
 }
 
-public class Awesomeobject    {
+public class Awesomeobject2    {
     public int SomeProps1 { get; set; } 
     public string SomeProps2 { get; set; } 
 }
 
-public class User    {
+public class User2   {
     public string id { get; set; } 
     public string name { get; set; } 
     public string created_at { get; set; } 
@@ -55,16 +49,16 @@ public class User    {
 
 }
 
-public class Class1    {
+public class Class12    {
     public int id { get; set; } 
     public string user_id { get; set; } 
-    public Awesomeobject awesomeobject { get; set; } 
+    public Awesomeobject2 awesomeobject { get; set; } 
     public string created_at { get; set; } 
     public string updated_at { get; set; } 
 
 }
 
-public class Class2    {
+public class Class22    {
     public string SomePropertyOfClass2 { get; set; } 
 
 }
