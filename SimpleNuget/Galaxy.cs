@@ -1,5 +1,3 @@
-﻿using System;
-
 namespace SimpleNuget;
 
 public class Galaxy
