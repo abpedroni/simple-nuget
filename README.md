@@ -5,13 +5,14 @@ This project contains:
 - Simple Library c# project;
 - Simple unit tests;
 - Github workflow
-  - [ ] greetings
-  - [ ] add comments by labels
-  - [ ] set label by created branch
-  - [ ] pr title semantic analysis
-  - [ ] pr validation
-  - [ ] release to nuget
-  - [ ] dotnet mainline build
+  - [x] add comments of greetings on PR/Issue
+  - [x] add comments by label on PR/Issue
+  - [x] set pr label by branch name
+  - [x] do analysis of pr title Semantic 
+  - [x] build pr
+  - [ ] build master - **IN TESTS**
+  - [ ] release master to nuget - **IN TESTS**
+  - [ ] create release with tag - **IN TESTS**
 
 GIthub Apps installed
   - [Microsoft Teams for GitHub](https://teams.github.com/)
