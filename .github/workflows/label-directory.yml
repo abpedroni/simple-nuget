@@ -5,7 +5,7 @@ on:
     types: 
     - opened
     - reopened
-    - synchronize
+    #- synchronize
 
 jobs:
   triage:

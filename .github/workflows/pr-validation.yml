@@ -4,7 +4,7 @@ on:
   pull_request:
     types: 
     - opened
-    - edited
+    #- edited
     - synchronize
     - ready_for_review
     - review_requested
