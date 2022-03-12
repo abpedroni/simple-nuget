@@ -2,18 +2,30 @@ name: PR Validation
 
 on:
   pull_request:
-    branches: 
-      - 'feat/**'
-      - 'feature/**'
-      - 'fix/**'
-      - 'hotfix/**'
-      - 'docs/**'
-      - 'refactor/**'
-      - 'perf/**'
-      - 'test/**'
-      - 'ci/**'
-      - 'chore/**'
-      - 'revert/**'
+    types: 
+    - opened
+    #- edited
+    - synchronize
+    - ready_for_review
+    - review_requested
+    - review_request_removed
+    # branches:    
+    #   - 'docs/**'
+    #   - 'feat/**'
+    #   - 'feature/**'
+    # branches: 
+    #   - feat/*
+    #   - feature/*
+    #   - fix/*
+    #   - hotfix/*
+    #   - docs/*
+    #   - refactor/*
+    #   - perf/*
+    #   - test/*
+    #   - ci/*
+    #   - chore/*
+    #   - revert/*
+
 
 env:
   NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
@@ -26,6 +38,13 @@ jobs:
     name: Build 
     runs-on: ubuntu-latest
     steps:
+    - name: Print variables
+      run: |
+        echo "github.event.action >> ${{ github.event.action}}"
+        echo "github.actor >> ${{ github.actor}}"
+        echo "github.event_name >> ${{ github.event_name}}"
+        echo "github.ref >> ${{ github.ref}}"
+
     - uses: actions/checkout@v2
 
     - name: Setup .NET v${{ env.DOTNET_VERSION }}
