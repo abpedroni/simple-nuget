@@ -7,5 +7,4 @@ refactor: refactor/*
 perf: perf/*
 test: test/*
 ci: ci/*
-chore: chore/*
 revert: revert/*
