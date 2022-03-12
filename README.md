@@ -24,3 +24,4 @@ GIthub Apps installed
 
   - [Pull Request Quantifier](https://github.com/microsoft/PullRequestQuantifier)
     - .github/prquantifier.yaml #TODO: config;
+
