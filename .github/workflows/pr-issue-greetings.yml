@@ -1,4 +1,4 @@
-name: Greetings
+name: Greetings on PR/Issue
 
 on: 
   pull_request:
@@ -6,8 +6,6 @@ on:
     - opened
     - assigned
   issues:
-
-#https://docs.github.com/en/actions/learn-github-actions/contexts#example-contents-of-the-github-context
 
 jobs:
   greeting:
