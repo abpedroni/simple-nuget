@@ -13,12 +13,11 @@ jobs:
   greeting:
     runs-on: ubuntu-latest
     steps:
-    - name: Print variables
-      run: |
-        echo "github.event.action >> ${{ github.event.action}}"
-        echo "github.actor >> ${{ github.actor}}"
-        echo "github.event_name >> ${{ github.event_name}}"
-        echo "github.ref >> ${{ github.ref}}"
+    - run: |
+      echo "github.event.action >> ${{ github.event.action}}"
+      echo "github.actor >> ${{ github.actor}}"
+      echo "github.event_name >> ${{ github.event_name}}"
+      echo "github.ref >> ${{ github.ref}}"
 
     - uses: actions/first-interaction@v1
       with:
