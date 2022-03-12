@@ -12,7 +12,7 @@ This project contains:
   - [x] build pr
   - [ ] build master - **IN TESTS**
   - [ ] release master to nuget - **IN TESTS**
-  - [ ] create release with tag - **IN TESTS**
+  - [ ] create release with tag - **WIP**
 
 GIthub Apps installed
   - [Microsoft Teams for GitHub](https://teams.github.com/)
