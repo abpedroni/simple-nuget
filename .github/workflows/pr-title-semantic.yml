@@ -5,7 +5,10 @@ on:
     types:
       - opened
       - edited
+      - reopened
+      - synchronize
       - ready_for_review
+      - review_requested
 
 permissions:
   pull-requests: write
