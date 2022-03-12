@@ -9,10 +9,10 @@ on:
     - ready_for_review
     - review_requested
     - review_request_removed
-    branches:    
-      - 'docs/**'
-      - 'feat/**'
-      - 'feature/**'
+    # branches:    
+    #   - 'docs/**'
+    #   - 'feat/**'
+    #   - 'feature/**'
     # branches: 
     #   - feat/*
     #   - feature/*
