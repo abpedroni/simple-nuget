@@ -1,19 +1,19 @@
-name: PR Validation
+name: Build PR
 
 on:
   pull_request:
     branches: 
-      - 'feat/**'
-      - 'feature/**'
-      - 'fix/**'
-      - 'hotfix/**'
-      - 'docs/**'
-      - 'refactor/**'
-      - 'perf/**'
-      - 'test/**'
-      - 'ci/**'
-      - 'chore/**'
-      - 'revert/**'
+      - feat/*
+      - feature/*
+      - fix/*
+      - hotfix/*
+      - docs/*
+      - refactor/*
+      - perf/*
+      - test/*
+      - ci/*
+      - chore/*
+      - revert/*
 
 env:
   NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}

@@ -1,4 +1,4 @@
-name: Comments by Label 
+name: Comments by Label on PR/Issue
 
 on:
   issues:

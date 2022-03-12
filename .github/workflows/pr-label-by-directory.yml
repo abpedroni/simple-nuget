@@ -1,4 +1,4 @@
-name: Label by directory
+name: PR label by branch name
 
 on:
   pull_request_target:
