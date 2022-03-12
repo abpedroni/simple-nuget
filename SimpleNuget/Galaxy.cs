@@ -36,6 +36,33 @@ public class Root
     public double longitude { get; set; }
     public string greeting { get; set; }
     public string favoriteFruit { get; set; }
+
+    public string greeting1 { get; set; }
+    public string greeting11 { get; set; }
+    public string greeting12 { get; set; }
+    public string greeting13 { get; set; }
+    public string greeting14 { get; set; }
+    public string greeting15 { get; set; }
+    public string greeting16 { get; set; }
+    public string greeting17 { get; set; }
+    public string greeting18 { get; set; }
+    public string greeting19 { get; set; }
+    public string greeting10 { get; set; }
+    public string greeting131 { get; set; }
+    public string greeting132 { get; set; }
+    public string greeting133 { get; set; }
+    public string greeting134 { get; set; }
+    public string greeting135 { get; set; }
+    public string greeting136 { get; set; }
+    public string greeting137 { get; set; }
+    public string greeting138 { get; set; }
+    public string greeting139 { get; set; }
+    public string greeting1322 { get; set; }
+    public string greeting1333 { get; set; }
+    public string greeting1344 { get; set; }
+    public string greeting1355 { get; set; }
+    public string greeting1366 { get; set; }
+
     public Class1 Class1 { get; set; } 
     public Class2 Class2 { get; set; } 
 }
