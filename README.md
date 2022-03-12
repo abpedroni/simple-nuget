@@ -13,8 +13,6 @@ This project contains:
   - [ ] release to nuget
   - [ ] dotnet mainline build
 
-
-
 GIthub Apps installed
   - [Microsoft Teams for GitHub](https://teams.github.com/)
     - Must install bot in MS Teams;
