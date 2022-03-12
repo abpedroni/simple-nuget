@@ -68,10 +68,11 @@ jobs:
     #   with:
     #     github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build and Test
-      run: |
-        dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false
-        dotnet test --no-build --verbosity normal
+    - name: Build 
+      run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }}
+        
+    - name: Test
+      run: dotnet test --no-restore --no-build --verbosity normal
 
     # - name: Pack
     #   run: dotnet pack --no-build -c ${{ env.CONFIG_DEPLOY }} -p:VersionSuffix=${{ env.BUILD_NUMBER }} /nr:false -o .
