@@ -30,7 +30,7 @@ GIthub Apps installed
 - [Probot - Semantic Pull Requests](https://github.com/zeke/semantic-pull-requests/blob/master/README.md)
   - .github/semantic.yml
 
-- [Probot - Welcome](https://github.com/behaviorbot/welcome)
+- [Probot - Welcome](https://github.com/apps/welcome)
   - .github/config.yml
 
 - [Probot - Request info](https://github.com/apps/request-info)

@@ -1,3 +1,5 @@
+#REPLACED BY [Probot - Welcome](https://github.com/apps/welcome)
+
 name: PR Greetings
 
 on: 
