@@ -26,3 +26,4 @@ GIthub Apps installed
   - [Pull Request Quantifier](https://github.com/microsoft/PullRequestQuantifier)
     - .github/prquantifier.yaml #TODO: config;
 
+  - [Semantic Pull Requests](https://github.com/zeke/semantic-pull-requests/blob/master/README.md)
