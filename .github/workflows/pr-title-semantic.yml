@@ -1,7 +1,12 @@
+# https://github.com/amannn/action-semantic-pull-request
+
 name: PR title Semantic 
 
 on:
   pull_request:
+    #COMMENT IF IT WILL BE USED INSTEAD OF GITHUB APP
+    branches-ignore:
+      - '**'
     types:
       - opened
       - edited
@@ -29,10 +34,7 @@ jobs:
     - uses: amannn/action-semantic-pull-request@v3.4.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        types: |
-          fixa
-          feata
+        
 
   # create-release:
   #   name: Create release
