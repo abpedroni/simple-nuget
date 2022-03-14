@@ -1,4 +1,4 @@
-name: Release Nuget Package
+name: Deploy Release Nuget Package
 
 on: 
   release:
