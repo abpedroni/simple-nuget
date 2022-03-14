@@ -1,0 +1,23 @@
+# Semantic Pull Requests configuration
+# See: https://github.com/zeke/semantic-pull-requests/blob/master/README.md
+
+# Disable validation, and skip status check creation
+enabled: true
+
+# Always validate the PR title, and ignore the commits
+titleOnly: true
+
+# A subset of types specified in commitizen/conventional-commit-types are used.
+# See: https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json
+types:
+  - feat
+  - fix
+  - docs
+  - style
+  - refactor
+  - perf
+  - test
+  - build
+  - ci
+  - chore
+  - revert
