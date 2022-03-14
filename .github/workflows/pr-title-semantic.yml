@@ -65,7 +65,7 @@ jobs:
         validateSingleCommit: true
         # Related to `validateSingleCommit` you can opt-in to validate that the PR
         # title matches a single commit to avoid confusion.
-        validateSingleCommitMatchesPrTitle: false
+        #validateSingleCommitMatchesPrTitle: false
         # If you use GitHub Enterprise, you can set this to the URL of your server
         #githubBaseUrl: https://github.myorg.com/api/v3
   # create-release:
