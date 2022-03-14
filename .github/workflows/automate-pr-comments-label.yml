@@ -1,4 +1,4 @@
-name: Comments by Label on PR/Issue
+name: Automate PR Comments by Label
 
 on:
   issues:

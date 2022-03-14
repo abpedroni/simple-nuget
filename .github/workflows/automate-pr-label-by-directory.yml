@@ -1,4 +1,4 @@
-name: PR label by branch name
+name: Automate PR label by branch name
 
 on:
   pull_request_target:
@@ -7,7 +7,7 @@ on:
       - reopened
 
 jobs:
-  triage:
+  label:
     runs-on: ubuntu-latest
     steps:
     - name: Print variables

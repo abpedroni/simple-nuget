@@ -1,6 +1,6 @@
 # https://github.com/amannn/action-semantic-pull-request
 
-name: PR title Semantic 
+name: PR title semantic
 
 on:
   pull_request:

@@ -1,4 +1,4 @@
-name: Build Master
+name: CI
 
 on:
   push:
@@ -34,7 +34,7 @@ env:
   CONFIG_DEPLOY: ${{ github.event.inputs.config_deploy }}
 
 jobs:
-  build:
+  build-and-test:
     name: Build 
     runs-on: ubuntu-latest
     steps:

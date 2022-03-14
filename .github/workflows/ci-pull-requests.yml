@@ -1,4 +1,4 @@
-name: Build PR
+name: CI Pull Request
 
 on:
   pull_request:
@@ -26,7 +26,6 @@ on:
     #   - chore/*
     #   - revert/*
 
-
 env:
   NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
   DOTNET_VERSION: '6.0.x'
@@ -34,7 +33,7 @@ env:
   CONFIG_DEPLOY: Debug
 
 jobs:
-  build:
+  build-and-test:
     name: Build 
     runs-on: ubuntu-latest
     steps:
