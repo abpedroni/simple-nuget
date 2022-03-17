@@ -11,6 +11,10 @@ on:
       - review_request_removed
     paths:
       - 'src/**'
+      - '**.cs'
+      - '**.csproj'
+      - '**.sln'
+      - '**.json'
     #  - src/**
       
     # branches:    
