@@ -10,7 +10,7 @@ env:
 
 jobs:
   generate-release:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: Generating release to github nuget packages
     defaults:
       run:
@@ -24,8 +24,9 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Create NuGet Package
-      run: dotnet pack -c Release -p:VersionSuffix=${{ github.event.release.tag_name }} /p:Version=${{ github.event.release.tag_name }} /p:PackageReleaseNotes="See https://github.com/abpedroni/simple-nuget/releases/tag/${{ github.event.release.tag_name }}" -o .
-
+      run: dotnet pack -c Release -p:VersionSuffix=${{ github.event.release.tag_name }} /p:PackageReleaseNotes="See https://github.com/abpedroni/simple-nuget/releases/tag/${{ github.event.release.tag_name }}" -o .
+      
+    #/p:Version=${{ github.event.release.tag_name }}
     #- name: Push 
     #  run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.NUGET_SOURCE }} --skip-duplicate    
 
