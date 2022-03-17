@@ -10,8 +10,10 @@ on:
       - review_requested
       - review_request_removed
     paths:
-      - '**.cs'
-      - '**.csproj'
+    #  - '**.cs'
+    #  - '**.csproj'
+      - src/**
+      
     # branches:    
     #   - 'docs/**'
     #   - 'feat/**'
@@ -41,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./src
+        working-directory: src
     steps:
     - name: Print variables
       run: |
