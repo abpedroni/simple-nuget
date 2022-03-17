@@ -12,6 +12,9 @@ jobs:
   generate-release:
     runs-on: windows-latest
     name: Generating release to github nuget packages
+    defaults:
+      run:
+        working-directory: src
     steps:
     - uses: actions/checkout@v1
 
