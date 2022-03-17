@@ -24,7 +24,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Create NuGet Package
-      run: dotnet pack -c Release -p:VersionSuffix=${{ github.event.release.tag_name }} /p:PackageReleaseNotes="See https://github.com/abpedroni/simple-nuget/releases/tag/${{ github.event.release.tag_name }}" -o .
+      run: dotnet pack -c Release -p:VersionSuffix=${{ github.event.release.tag_name }} /p:PackageReleaseNotes="See https://github.com/abpedroni/simple-nuget/releases/tag/${{ github.event.release.tag_name }}" -o out/
       
     #/p:Version=${{ github.event.release.tag_name }}
     #- name: Push 
@@ -34,4 +34,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: GenFu.${{ github.event.release.tag_name }}.nupkg
-        path: .\SimpleNuget.${{ github.event.release.tag_name }}.nupkg
+        path: ./out/SimpleNuget.${{ github.event.release.tag_name }}.nupkg
