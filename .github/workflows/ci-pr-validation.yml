@@ -15,8 +15,7 @@ on:
       - '**.csproj'
       - '**.sln'
       - '**.json'
-    paths-ignore:
-      - '**.md'
+      - '!**.md'
     #  - src/**
       
     # branches:    
