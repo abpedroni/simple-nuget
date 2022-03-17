@@ -10,7 +10,7 @@ on:
       - review_requested
       - review_request_removed
     paths:
-      - 'src/**'
+      #- 'src/**'
       - '**.cs'
       - '**.csproj'
       - '**.sln'
