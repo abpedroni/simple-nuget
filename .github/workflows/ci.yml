@@ -41,14 +41,15 @@ jobs:
       run:
         working-directory: src
     steps:
+    - uses: actions/checkout@v2
+
     - name: Print variables
       run: |
         echo "github.event.action >> ${{ github.event.action}}"
         echo "github.actor >> ${{ github.actor}}"
         echo "github.event_name >> ${{ github.event_name}}"
         echo "github.ref >> ${{ github.ref}}"
-    - uses: actions/checkout@v2
-
+        
     - name: Define build number if empty
       run: echo "BUILD_NUMBER=1.0.${{ github.run_number }}" >> $GITHUB_ENV
       if: ${{ env.BUILD_NUMBER == '' }}
