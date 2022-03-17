@@ -4,10 +4,11 @@ on:
   push:
     branches: 
       - master
-    paths:
-      - 'src/**'
     paths-ignore: 
       - '**.md'
+      - 'docs/**'
+      - 'db/**'
+      - 'pipelines/**'
       
   workflow_dispatch:
     inputs:
