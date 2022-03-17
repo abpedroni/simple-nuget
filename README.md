@@ -1,6 +1,5 @@
 # simple-nuget
 
-
 This project contains:
 - Simple Library c# project;
 - Simple unit tests;
