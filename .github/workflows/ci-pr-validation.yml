@@ -10,8 +10,7 @@ on:
       - review_requested
       - review_request_removed
     paths:
-      - 'src/**.cs'
-      - 'src/**.csproj'
+      - 'src/**'
     #  - src/**
       
     # branches:    
@@ -41,16 +40,16 @@ jobs:
   build-and-test:
     name: Build 
     runs-on: ubuntu-latest
-    #defaults:
-    #  run:
-    #    working-directory: src
+    defaults:
+      run:
+        working-directory: src
     steps:
-    - name: Print variables
-      run: |
-        echo "github.event.action >> ${{ github.event.action}}"
-        echo "github.actor >> ${{ github.actor}}"
-        echo "github.event_name >> ${{ github.event_name}}"
-        echo "github.ref >> ${{ github.ref}}"
+    #- name: Print variables
+    #  run: |
+    #    echo "github.event.action >> ${{ github.event.action}}"
+    #    echo "github.actor >> ${{ github.actor}}"
+    #    echo "github.event_name >> ${{ github.event_name}}"
+    #    echo "github.ref >> ${{ github.ref}}"
 
     - uses: actions/checkout@v2
 
@@ -61,11 +60,14 @@ jobs:
         
     - name: Restore dependencies
       run: dotnet restore --configfile NuGet.Config
+      #working-directory: src
       
     - name: Build 
       run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }}
+      #working-directory: src
         
     - name: Test
       run: dotnet test --no-restore --no-build --verbosity normal
+      #working-directory: src
 
 
