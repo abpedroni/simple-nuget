@@ -1,4 +1,4 @@
-name: CI Pull Request
+name: CI Pull Request Validation
 
 on:
   pull_request:
@@ -9,6 +9,9 @@ on:
       - ready_for_review
       - review_requested
       - review_request_removed
+    paths:
+      - '**.cs'
+      - '**.csproj'
     # branches:    
     #   - 'docs/**'
     #   - 'feat/**'
