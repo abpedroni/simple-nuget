@@ -1,6 +1,9 @@
+name: Changelog Add
+
 on:
-  release:
-    type: published
+  push:
+    tags:
+      - '*'
 
 jobs:
   comment:
