@@ -6,11 +6,7 @@ on:
       - master
     paths:
       - 'src/**'
-    paths-ignore: 
-      - '**.md'
-      - 'docs/**'
-      - 'db/**'
-      - 'pipelines/**'
+    paths-ignore: ['**.md', 'docs/**', 'db/**', 'pipelines/**']
       
   workflow_dispatch:
     inputs:
