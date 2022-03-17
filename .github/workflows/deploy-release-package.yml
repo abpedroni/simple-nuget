@@ -34,4 +34,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: GenFu.${{ github.event.release.tag_name }}.nupkg
-        path: ./out/SimpleNuget.${{ github.event.release.tag_name }}.nupkg
+        path: out/SimpleNuget.${{ github.event.release.tag_name }}.nupkg
