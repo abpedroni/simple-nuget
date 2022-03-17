@@ -65,14 +65,11 @@ jobs:
         
     - name: Restore dependencies
       run: dotnet restore --configfile NuGet.Config
-      #working-directory: src
       
     - name: Build 
       run: dotnet build --no-restore -c ${{ env.CONFIG_DEPLOY }}
-      #working-directory: src
         
     - name: Test
       run: dotnet test --no-restore --no-build --verbosity normal
-      #working-directory: src
 
 
