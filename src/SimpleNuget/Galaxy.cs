@@ -16,7 +16,5 @@ public class Galaxy
 
         Name = name;
         Distance = distance;
-
-        //teste 2 2 2
     }
 }
