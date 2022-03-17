@@ -4,6 +4,8 @@ on:
   push:
     branches: 
       - master
+    paths:
+      - 'src/**'
     paths-ignore: 
       - '**.md'
       - 'docs/**'
@@ -37,6 +39,9 @@ jobs:
   build-and-test:
     name: Build 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
     steps:
     - name: Print variables
       run: |
