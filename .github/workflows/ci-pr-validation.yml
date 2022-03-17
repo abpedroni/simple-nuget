@@ -10,9 +10,9 @@ on:
       - review_requested
       - review_request_removed
     paths:
-    #  - '**.cs'
-    #  - '**.csproj'
-      - src/**
+      - 'src/**.cs'
+      - 'src/**.csproj'
+    #  - src/**
       
     # branches:    
     #   - 'docs/**'
