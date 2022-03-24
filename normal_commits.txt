@@ -1,3 +1,4 @@
 teste normal commits;
 teste
 teste2
+teste3
