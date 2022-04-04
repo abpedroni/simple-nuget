@@ -5,7 +5,7 @@ on:
     branches: 
       - master
       - 'release/**'
-      - release/*
+      # - release/*
     paths-ignore: 
       - '**.md'
       - 'docs/**'
