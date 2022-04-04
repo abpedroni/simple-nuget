@@ -11,6 +11,7 @@ public class Galaxy
         {
             throw new ArgumentException("Value cannot be null or empty.", nameof(name));
         }
+        
         //teste
         if (distance <= 0) throw new ArgumentException(nameof(distance));
 
